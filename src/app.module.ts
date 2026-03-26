@@ -15,9 +15,7 @@ import { ApmModule } from './apm/apm.module';
 import { TracingModule } from './tracing/tracing.module';
 import { ShardingModule } from './database/sharding/sharding.module';
 import { ContractsModule } from './contracts/contracts.module';
-import { MatchingModule } from './matching/matching.module';
-import { EnergyModule } from './energy/energy.module';
-import { SchedulerModule } from './scheduler/scheduler.module';
+import { ApiGatewayModule } from './gateway/api-gateway.module';
 
 @Module({
   imports: [
@@ -42,9 +40,7 @@ import { SchedulerModule } from './scheduler/scheduler.module';
     RiskManagementModule,
     CrossBorderModule,
     ContractsModule,
-    MatchingModule,
-    EnergyModule,
-    SchedulerModule,
+    ApiGatewayModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService],
