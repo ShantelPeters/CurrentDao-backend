@@ -12,6 +12,11 @@ import { PricingModule } from './pricing/pricing.module';
 import { Webhook } from './webhooks/entities/webhook.entity';
 import { WebhookDelivery } from './webhooks/entities/webhook-delivery.entity';
 import { PriceHistory } from './pricing/entities/price-history.entity';
+import { LocationModule } from './location/location.module';
+import { Location } from './location/entities/location.entity';
+import { GridZone } from './location/entities/grid-zone.entity';
+import { AnalyticsModule } from './analytics/analytics.module';
+import { AnalyticsData } from './analytics/entities/analytics-data.entity';
 
 @Module({
   imports: [
@@ -21,13 +26,15 @@ import { PriceHistory } from './pricing/entities/price-history.entity';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'database.sqlite',
-      entities: [CrossBorderTransaction, RiskDataEntity, Webhook, WebhookDelivery, PriceHistory],
+      entities: [CrossBorderTransaction, RiskDataEntity, Webhook, WebhookDelivery, PriceHistory, Location, GridZone, AnalyticsData],
       synchronize: true,
     }),
     CrossBorderModule,
     RiskManagementModule,
     WebhooksModule,
     PricingModule,
+    LocationModule,
+    AnalyticsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
