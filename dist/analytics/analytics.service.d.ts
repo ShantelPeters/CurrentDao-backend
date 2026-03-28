@@ -1,0 +1,32 @@
+import { Repository } from 'typeorm';
+import { AnalyticsData, AnalyticsType, AggregationPeriod } from './entities/analytics-data.entity';
+import { ReportParamsDto, DashboardMetricsDto } from './dto/report-params.dto';
+import { TradingVolumeReport } from './reports/trading-volume.report';
+import { PriceTrendsReport } from './reports/price-trends.report';
+import { UserPerformanceReport } from './reports/user-performance.report';
+import { MarketEfficiencyReport } from './reports/market-efficiency.report';
+export declare class AnalyticsService {
+    private analyticsRepository;
+    private tradingVolumeReport;
+    private priceTrendsReport;
+    private userPerformanceReport;
+    private marketEfficiencyReport;
+    constructor(analyticsRepository: Repository<AnalyticsData>, tradingVolumeReport: TradingVolumeReport, priceTrendsReport: PriceTrendsReport, userPerformanceReport: UserPerformanceReport, marketEfficiencyReport: MarketEfficiencyReport);
+    generateTradingVolumeReport(params: ReportParamsDto): Promise<TradingVolumeReport>;
+    generatePriceTrendsReport(params: ReportParamsDto): Promise<PriceTrendsReport>;
+    generateUserPerformanceReport(params: ReportParamsDto): Promise<UserPerformanceReport>;
+    generateMarketEfficiencyReport(params: ReportParamsDto): Promise<MarketEfficiencyReport>;
+    getDashboardMetrics(params: DashboardMetricsDto): Promise<any>;
+    storeAnalyticsData(data: Partial<AnalyticsData>): Promise<AnalyticsData>;
+    getAnalyticsData(type: AnalyticsType, period: AggregationPeriod, startDate?: Date, endDate?: Date, userId?: string, gridZoneId?: string, country?: string): Promise<AnalyticsData[]>;
+    exportReport(reportData: any, format: 'json' | 'csv' | 'pdf'): Promise<Buffer | string>;
+    scheduleReport(reportType: AnalyticsType, schedule: string, recipients: string[], params: ReportParamsDto): Promise<void>;
+    private getVolumeMetrics;
+    private getRenewableEnergyMetrics;
+    private getMarketEfficiencyMetrics;
+    private getGeographicBreakdown;
+    private getTopPerformers;
+    private getRecentTrends;
+    private convertToCSV;
+    private convertToPDF;
+}
